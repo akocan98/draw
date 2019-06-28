@@ -165,7 +165,7 @@ io.on('connection', function (socket) {
     socket.emit('draw_history', { lines: array_rooms[room_id].line_history } );
 
     for(var i = 0; i < array_rooms.length; i++){
-      io.to(array_rooms[i].id).emit('draw_users', {room:{id:room_id, name:array_rooms[room_id].name, players:array_rooms[room_id].players},  lobbies:{array_rooms} });
+      io.to(array_rooms[i].id).emit('draw_users', {room:{id:array_rooms[i].id, name:array_rooms[i].name, players:array_rooms[i].players},  lobbies:{array_rooms} });
     }
 
   });
