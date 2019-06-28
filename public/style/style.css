@@ -1,0 +1,333 @@
+@font-face {
+    font-family: quicksand;
+    src: url('./../fonts/Quicksand-Regular.otf');
+}
+
+@font-face {
+    font-family: quicksandBold;
+    src: url('./../fonts/Quicksand-Bold.otf');
+}
+
+* { font-family: quicksand; }
+
+body {
+    background-color: #fff0fd;
+    background-image: url(bg.png);
+    background-repeat: repeat;
+
+}
+
+#app {
+    background-color: #edd6ef;
+    width: 125vh;
+    padding: 15px;
+    border: 5px solid #81618c;
+    border-radius: 5px;
+    font-family: quicksand;
+    width: 1400px;
+    display: flex;
+    flex-direction: row;
+}
+
+#sketchpadapp {
+    /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+    background-color: #edd6ef;
+}
+#sketchpad {
+    border: 2px solid #b992c5;
+    border-radius: 5px;
+    position: relative; /* Necessary for correct mouse co-ords in Firefox */
+    background-color: white;
+}
+
+#pen_toolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+    background-color: rgb(251, 235, 253);
+    border: 2px solid #b992c5;
+    border-radius: 5px;
+}
+
+#pen_toolbar #canvas_erase {
+    border: 0.5px solid grey;
+    margin-left: 15px;
+}
+
+#pen_toolbar #color_picker {
+    display: flex;
+    flex-direction: column;
+}
+
+#pen_toolbar #color_picker .col--col_left,
+#pen_toolbar #color_picker .col--col_right{
+    display: flex;
+}
+
+#pen_toolbar #color_picker .color {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #6e3882;
+    margin: 1px;
+}
+
+#pen_toolbar #color_picker .color:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    filter: brightness(1.1);
+}
+
+#pen_toolbar #color_picker #rainbow {
+   background-image:
+    linear-gradient(
+      45deg, 
+      #ff0000,
+      #ff0000 18.5%,
+      #FF7F00 20%,
+      #FF7F00 38.5%,
+      #FFFF00 40%,
+      #FFFF00 58.5%,
+      #00FF00 60%,
+      #00FF00 78.5%,
+      #0000FF 80% 
+    );
+}
+
+.rainbow {
+   background-image:
+    linear-gradient(
+      45deg, 
+      #ff0000,
+      #ff0000 18.5%,
+      #FF7F00 20%,
+      #FF7F00 38.5%,
+      #FFFF00 40%,
+      #FFFF00 58.5%,
+      #00FF00 60%,
+      #00FF00 78.5%,
+      #0000FF 80% 
+    );
+}
+
+#pen_toolbar #color_picker #canvas_erase,
+#pen_toolbar #color_picker #eraser,
+#pen_toolbar #color_picker #undo,
+#pen_toolbar #color_picker #paint_bucket {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+#pen_toolbar #color_picker #undo img {
+    opacity: .5;
+}
+
+#pen_toolbar #color_picker img{
+    width: 18px;
+}
+
+#pen_toolbar #color_picker #canvas_erase:hover {
+    cursor: pointer;
+    border: 1px solid red;
+    background-color: #ff2d2d;
+}
+
+#pen_toolbar #color_picker #eraser:hover {
+    cursor: pointer;
+    border: 1px solid lightgreen; 
+}
+
+#ingame--social,
+#ingame--chat {
+    /* height: 550px; */
+    /* width: 250px; */
+    background-color: white;
+    border: 2px solid #b992c5;
+    border-radius: 5px;
+    flex: 1;
+}
+
+#ingame--social {
+    margin-right: 15px;
+}
+
+#ingame--chat {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+#ingame--social #lobby_name,
+#ingame--chat #chat--main_label {
+    font-family: quicksandBold;
+    font-size: 16px;
+    padding: 15px 0 17px 0;
+    background-color: rgb(251, 235, 253);
+    border-bottom: 2px solid #b992c5;
+    color: #b7a6bd;
+}
+
+#ingame--social #users .user {
+    border-bottom: 0.5px solid #dedede;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 5.5px;
+    padding-left: 5px;
+    padding-top: 5.5px;
+    border-left: 1px solid #b992c5;
+    border-right: 1px solid #b992c5;
+}
+
+#ingame--social #users .user .avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+
+#ingame--social #users .user .you {
+    font-family: quickSand;
+}
+
+#ingame--social #users .user .name{
+    font-family: quicksandBold;    
+}
+
+#ingame--social #users .user:nth-child(odd) {
+    background-color: white;
+}
+#ingame--social #users .user:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+#footer {
+    padding: 15px 0 15px 0;
+}
+
+#footer a{
+    opacity: 0.5;
+    transition: .25s all ease;
+    text-decoration: none;
+}
+
+#footer a:hover{
+    opacity: 1;
+}
+
+#logo {
+    margin-top: 40px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 25px;
+    background: #d3d3d3;
+    opacity: 0.7;
+    outline: 1px solid black;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #5f376d;
+
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #5f376d;
+
+}
+
+#pen_size_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#pen_preview { 
+    border-radius: 50px;
+    background-color: black;
+    width: 8px;
+    display: flex;
+    border: 1px solid black;
+    margin: 1px 10px 1px 10px;
+}
+
+#chat__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#chat_form {
+    margin: 0;
+}
+
+#chat__history {
+    flex: 1;
+    border-bottom: 1px solid #81618c;
+    display: flex;
+    flex-direction: column;  
+    overflow-y: auto;  
+}
+
+#chat__input {
+    width: 100%; 
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-left: 1px solid #b992c5;
+}
+
+.chat_text {
+    padding: 5px;
+    text-align: left;
+    padding: 10px;
+    border-top: 0.5px solid #dedede;
+    border-left: 1px solid #b992c5;
+}
+
+.chat_text:last-child {
+    border-bottom: 0.5px solid #dedede;
+}
+
+.chat_text:nth-child(odd) {
+    background-color: white;
+}
+.chat_text:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+.pen_size_hand span{
+    padding: 5px;
+    margin: 2px;
+    font-weight: 500;
+}
+
+.pen_size_hand span:hover{
+    font-weight: 900;
+    cursor: pointer;
+}

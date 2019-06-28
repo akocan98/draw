@@ -1,0 +1,13 @@
+{
+   "name": "Draw",
+   "description": "Draw",
+   "author": "Amer",
+   "dependencies": {
+      "express": "4.x",
+      "socket.io": "^2.1.1"
+   },
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "build": "webpack"
+   }
+}

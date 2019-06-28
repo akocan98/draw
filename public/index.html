@@ -1,0 +1,51 @@
+<html>
+<head>
+   <title>Riši</title>
+   <link rel="stylesheet" href="style/style.css">
+   <meta charset="UTF-8">
+</head>
+<body>
+	<script src="helpers/input.js"></script>
+	<script src="helpers/helpers.js"></script>
+	<script src="client.js"></script>
+
+	<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+	<center>
+		<h1 id="logo"> Title / Logo </h1>
+		<div id="app">
+			<div class="ingame--social" id="ingame--social">
+				<div id="lobby_name"> &nbsp; </div>
+				<div id="users"> </div>
+			</div>
+			<div id="sketchpadapp">
+				<canvas id="sketchpad" width="800" height="550"> Canvas not supported by your Browser! </canvas> <br />
+				<div id="pen_toolbar">	
+					<div id="color_picker"></div>
+					<div id="pen_preview"></div>
+					<div id="pen_size_container">
+						<div class="pen_size label"> Pen size </div>
+						<input type="range" min="2" max="14" value="8" step="1" class="slider" id="pen_size_slider">
+					</div>
+				</div>
+			</div>
+			<div id="ingame--chat">
+				<div id="chat--main_label"> Chat </div>
+				<div id="chat__content"> 
+					<div id="chat__history">
+						<!--<div class="chat_text"> User1: Sample text </div>-->
+						
+					</div>
+					<div id="text_input">
+						<form id="chat_form" autocomplete="off">
+							<input type="text" maxlength="75" id="chat__input" placeholder="What's your guess?">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div id="footer">
+			<a href="credits.html" target="_blank"> Credits </a>
+		</div>-->
+	</center>
+</body>
+</html>
