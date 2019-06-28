@@ -23,7 +23,7 @@ var player = {
          '#C67943',
          '#6C6C6C',
          // bottom
-         //'rainbow',
+         'rainbow',
          '#740B07',
          '#C23800',
          '#E8A200',
@@ -34,6 +34,7 @@ var player = {
          '#A75574',
          '#63300D',
          '#000000',
+         '#FFFFFF',
       ]
    },
 
@@ -213,6 +214,9 @@ var socket_methods = {
       send_chat : function(text){
          socket.emit('send_chat', { name : socket.name, text : text });
       },
+      change_lobby : function(lobbyid){
+         socket.emit('change_lobby', { lobbyid: lobbyid });
+      },
       nullify : function(){
          return null;
       }
@@ -353,6 +357,25 @@ function __init() {
 
    socket.on('draw_users', function(data) {
       document.getElementById('lobby_name').innerHTML = "ROOM ID: " + data.room.id; // + data.room.name.toUpperCase() + " (" + data.room.id + ")";
+
+      //console.log(data.lobbies.array_rooms)
+      var lobbies_dom = document.getElementById("lobbies");
+      lobbies_dom.innerHTML = "";
+      //make lobbies list
+      for(var i = 0; i < data.lobbies.array_rooms.length; i++){
+         //console.log(data.lobbies.array_rooms[i].id);
+         var lobby_dom = document.createElement("div");
+         lobby_dom.classList.add('lobby');
+         lobby_dom.id = i;
+         lobby_dom.innerHTML = "Room id: " + data.lobbies.array_rooms[i].id + "<br><span id='playercount'>Players: " + data.lobbies.array_rooms[i].players.length + "</span>";
+         
+         lobby_dom.addEventListener('click', function(){
+            socket_methods.evoke.change_lobby(this.id);
+         });
+
+         lobbies_dom.appendChild(lobby_dom);
+      }
+
       socket_methods.on_receive.draw_users(data.room.players);
    });
 

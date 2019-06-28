@@ -17,7 +17,7 @@ var dictionary = JSON.parse(fs.readFileSync('words.json', 'utf8'));
 var dictionary_length = Object.keys(dictionary).length
 
 var array_rooms = [];
-for(var i = 0; i < 2; i++){
+for(var i = 0; i < 5; i++){
   array_rooms.push(new room(i));
 }
 
@@ -66,7 +66,7 @@ Custom attrs:
   - Socket.name
   - Socket.avatar
 */
-
+console.log("\nServer running on 127.0.0.1:8080\n--------------------------------")
 function loop_log(){
   console.clear(); // Win only
   console.log("");
@@ -105,7 +105,7 @@ io.on('connection', function (socket) {
   array_rooms[room_id].players.push({ id:socket.id, name:socket.name, avatar:socket.avatar });
 
 
-  io.to(room_id).emit('draw_users', { room:{id:room_id, name:array_rooms[room_id].name, players:array_rooms[room_id].players} });
+  io.to(room_id).emit('draw_users', { room:{id:room_id, name:array_rooms[room_id].name, players:array_rooms[room_id].players}, lobbies:{array_rooms} });
 
   // Send the drawing history of the room you just joined
 
@@ -130,7 +130,7 @@ io.on('connection', function (socket) {
   socket.on('send_chat', function(data) {
 
     if(contains_blacklisted_words(data.text)){
-      io.to(room_id).emit('append_to_chat_styled', { text : '<span style="font-style: italic; font-weight: bold;"> ' + data.name + ' is a dick.</span>'})
+      io.to(room_id).emit('append_to_chat_styled', { text : '<span style="font-style: italic; font-weight: bold;"> ' + data.name + '...</span>'})
       return;
     }
 
@@ -139,6 +139,21 @@ io.on('connection', function (socket) {
       data.text = data.text.replace(/</g, "&lt;").replace(/>/g, "&gt;")
       io.to(room_id).emit('append_to_chat', { name : data.name, text : data.text });
     } 
+  });
+
+  socket.on('change_lobby', function(data){
+    socket.leave(room_id);
+    var socket_index = array_rooms[room_id].players.findIndex(_x => _x.id === socket.id);
+    array_rooms[room_id].players.splice(socket_index, 1);
+    room_id = data.lobbyid;
+    socket.join(room_id);
+    array_rooms[room_id].players.push({ id:socket.id, name:socket.name, avatar:socket.avatar });
+    socket.emit('draw_history', { lines: array_rooms[room_id].line_history } );
+
+    for(var i = 0; i < array_rooms.length; i++){
+      io.to(array_rooms[i].id).emit('draw_users', {room:{id:room_id, name:array_rooms[room_id].name, players:array_rooms[room_id].players},  lobbies:{array_rooms} });
+    }
+
   });
 
   socket.on('erase_all', function(data){
@@ -161,7 +176,8 @@ io.on('connection', function (socket) {
 
     var filtered = line_history_copy.filter(function(e){return e});
     array_rooms[room_id].line_history = filtered;
-    io.to(room_id).emit('draw_history', { lines: array_rooms[room_id].line_history } );
+    //io.to(room_id).emit('draw_history', { lines: array_rooms[room_id].line_history } );
+    socket.emit('draw_history', { lines: array_rooms[room_id].line_history } );
 
   });
 
@@ -170,7 +186,7 @@ io.on('connection', function (socket) {
       var socket_index = array_rooms[room_id].players.findIndex(_x => _x.id === socket.id);
       array_rooms[room_id].players.splice(socket_index, 1);
 
-      io.to(room_id).emit('draw_users', {room:{id:room_id, name:array_rooms[room_id].name, players:array_rooms[room_id].players} });
+      io.to(room_id).emit('draw_users', {room:{id:room_id, name:array_rooms[room_id].name, players:array_rooms[room_id].players},  lobbies:{array_rooms} });
       
   });
 

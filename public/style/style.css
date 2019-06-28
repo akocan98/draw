@@ -24,7 +24,7 @@ body {
     border: 5px solid #81618c;
     border-radius: 5px;
     font-family: quicksand;
-    width: 1400px;
+    width: 1100px;
     display: flex;
     flex-direction: row;
 }
@@ -68,18 +68,20 @@ body {
 #pen_toolbar #color_picker {
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 #pen_toolbar #color_picker .col--col_left,
 #pen_toolbar #color_picker .col--col_right{
     display: flex;
+    flex: 1;
+    padding: 0 0 0 10px;
 }
 
 #pen_toolbar #color_picker .color {
-    width: 35px;
-    height: 35px;
     border: 1px solid #6e3882;
     margin: 1px;
+    flex: 1;
 }
 
 #pen_toolbar #color_picker .color:hover {
@@ -208,9 +210,13 @@ body {
 
 #ingame--social #users .user:nth-child(odd) {
     background-color: white;
+    border: none;
+    border-bottom: 1px solid #f7ebfb;
 }
 #ingame--social #users .user:nth-child(even) {
     background-color: #f7f7f7;
+    border: none;
+    border-bottom: 1px solid #f7ebfb;
 }
 
 #footer {
@@ -238,6 +244,8 @@ body {
     background: #d3d3d3;
     opacity: 0.7;
     outline: 1px solid black;
+    width: 100px;
+    margin-right: 10px;
 }
 
 .slider:hover {
@@ -330,4 +338,34 @@ body {
 .pen_size_hand span:hover{
     font-weight: 900;
     cursor: pointer;
+}
+
+#lobbies {  
+    display: flex;
+    /* background-color: red; */
+    /* width: 500px; */
+    /* width: 100%; */
+    width: 1100px;
+    margin-top: 15px;
+
+}
+
+#lobbies .lobby {
+    margin: 5px;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #b992c5;
+    background-color: #fbebfd;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+#lobbies .lobby:hover{
+    background-color: #d6b9df;
+    cursor: pointer;
+}
+
+#playercount {
+    font-size: 12px;
+    color: #81618c;
+    font-weight: 200;
 }
