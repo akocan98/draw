@@ -7,8 +7,22 @@ var express = require('express'),
 
 var server =  http.createServer(app);
 var io = socketIo.listen(server);
+var port = 8080;
 
-server.listen(8080);
+// print process.argv
+/*process.argv.forEach(function (val, index, array) {
+  if(index == 2){
+    val = parseInt(val);
+    if(val >= 0 && val <= 65535) {
+      port = val;
+    }
+  }
+
+});*/
+//port as a parameter disabled due to client sided dependency
+
+
+server.listen(port);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -17,7 +31,7 @@ var dictionary = JSON.parse(fs.readFileSync('words.json', 'utf8'));
 var dictionary_length = Object.keys(dictionary).length
 
 var array_rooms = [];
-for(var i = 0; i < 5; i++){
+for(var i = 0; i < 6; i++){
   array_rooms.push(new room(i));
 }
 
@@ -66,12 +80,12 @@ Custom attrs:
   - Socket.name
   - Socket.avatar
 */
-console.log("\nServer running on 127.0.0.1:8080\n--------------------------------")
+console.log("\nServer running on 127.0.0.1:"+port+"\n--------------------------------")
 function loop_log(){
   console.clear(); // Win only
   console.log("");
 
-  console.log("Server running on 127.0.0.1:8080\n--------------------------------");
+  console.log("Server running on 127.0.0.1:"+port+"\n--------------------------------");
   var curr_players_count = 0;
 
   for(var i = 0; i < array_rooms.length; i++){
