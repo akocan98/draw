@@ -4,7 +4,7 @@
    "author": "Amer",
    "dependencies": {
       "express": "4.x",
-      "socket.io": "^2.1.1"
+      "socket.io": "^2.4.0"
    },
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
